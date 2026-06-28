@@ -7,27 +7,20 @@ const ConvertBox = () => {
   const [data, SetData] = useState([]);
   const [error, SetError] = useState(null);
   const [input, setInput] = useState(1);
-  const [receive, setReceive] = useState();
+  const [receive, setReceive] = useState(1.79);
   const [selectedReceiveCountry, setSelectedReceiveCountry] = useState("ANG");
 
-  const handleInput = (e) => {
-    const inputValue = e.target.value;
-    if (inputValue === "") {
-      setInput("");
-      setReceive(0);
-      return;
-    }
-    const numValue = Number(inputValue);
-    const selectedCurrency = data.find(
-      (item) => item.quote === selectedReceiveCountry,
-    );
-    console.log(selectedCurrency);
 
-    if (!isNaN(numValue) && selectedCurrency) {
-      setInput(numValue);
-      setReceive(numValue * selectedCurrency.rate);
-    }
-  };
+ const handleInput = (e) => {
+  const value = e.target.value;
+
+  if (value === "") {
+    setInput("");
+    return;
+  }
+
+  setInput(Number(value));
+};
 
   useEffect(() => {
     const fetchRates = async () => {
@@ -43,6 +36,16 @@ const ConvertBox = () => {
     };
     fetchRates();
   }, [baseCurrency]);
+
+    useEffect(() => {
+  const selected = data.find(
+    (item) => item.quote === selectedReceiveCountry
+  );
+
+  if (selected && input !== "") {
+    setReceive(input * selected.rate);
+  }
+}, [input, selectedReceiveCountry, data]);
 
   return (
     <div className="mt-12 max-w-5xl flex flex-col justify-start mx-auto ">
