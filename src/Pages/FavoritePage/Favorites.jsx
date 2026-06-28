@@ -1,7 +1,7 @@
 import React from "react";
-import { CompareData } from "./CompareData";
+import { FavoriteData } from "./FavoriteData";
 
-const Compare = () => {
+const Fovorite = () => {
   return (
     <div className=" max-w-5xl mx-auto pb-12">
       <div className="mt-5 flex items-center justify-between bg-[#171719] p-5 ">
@@ -9,23 +9,21 @@ const Compare = () => {
         <p>8 PAIRS</p>
       </div>
       <div className="flex flex-col gap-3 px-5 pb-5 bg-[#171719]">
-        {CompareData.map((data) => (
+        {FavoriteData.map((data) => (
           <div
-            className="flex px-5 items-center justify-between rounded-lg h-14 bg-[#2E2E2E]"
+            className="flex items-center px-5 justify-between rounded-lg h-14 bg-[#2E2E2E]"
             key={data.id}
           >
-            <div className="flex">
-              <img src={data.img} alt="" />
-              <div>
-                <p>{data.name}</p>
-                <p>{data.currency}</p>
-              </div>
+            <div className="flex gap-2 ">
+              <p>{data.fromC}</p>
+              <p>To</p>
+              <p>{data.toC}</p>
             </div>
             <div className="flex gap-3">
-              <div>
-                <p>{data.price}</p>
-                <p>@ {data.priceInone}</p>
-              </div>
+              <div>   <p> {data.price}</p>
+
+              <p>+{data.change}%</p></div>
+           
               <button className="border px-4">Fav</button>
             </div>
           </div>
@@ -35,4 +33,4 @@ const Compare = () => {
   );
 };
 
-export default Compare;
+export default Fovorite;

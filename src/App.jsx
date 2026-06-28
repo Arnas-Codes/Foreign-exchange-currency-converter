@@ -4,8 +4,10 @@ import ConvertBox from "./Components/ConversionBox/ConvertBox";
 import PagesHeader from "./Pages/PagesHeader/PagesHeader";
 import History from "./Pages/HistoryPage/History";
 import Compare from "./Pages/ComparePage/Compare";
+import Favorites from "./Pages/FavoritePage/Favorites";
 
 import { Routes, Route } from "react-router-dom";
+import { FavoriteData } from "./Pages/FavoritePage/FavoriteData";
 
 const App = () => {
   return (
@@ -19,6 +21,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<History />} />
           <Route path="/compare" element={<Compare />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </div>
     </div>
